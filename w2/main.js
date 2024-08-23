@@ -18,6 +18,6 @@ const myRecycle = 6;
 // 8. Tally up your annual transportation scores.
 const myTransportScore = 4;
 // 9. Add up your points.
-const cfpTotal = myHouse + myHomeSize + myFoodChoices + myWaterConsumption + myHouseholdItemsBought + myWaste + myRecycle + myTransportScore
+const cfpTotal = myHouse + myHomeSize + myFoodChoices + myWaterConsumption + myHouseholdItemsBought + myWaste + myRecycle + myTransportScore = 98;
 // 10. Write JS to update the rendered html (index.html) with total footprint
 
