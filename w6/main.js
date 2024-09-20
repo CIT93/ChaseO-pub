@@ -50,7 +50,10 @@ function start(houseHoldMembers, houseSize) {
   const houseHoldPTS = determineHouseholdPts(houseHoldMembers);
   const houseSizePTS = determineHouseSizePts(houseSize);
   const total = houseHoldPTS + houseSizePTS;
+
   cfpData.push({
+    firNameObj: FORM.firstname.value,
+    lstNameObj: FORM.lastname.value,
     houseM: houseHoldMembers,
     houseS: houseSize,
     houseMPTS: houseHoldPTS,
@@ -66,9 +69,9 @@ function start(houseHoldMembers, houseSize) {
 function displayOutput() {
   for (obj of cfpData) {
     const newH2 = document.createElement("h2");
-    newH2.textContent = `Carbon Footprint ${obj.cfpTotal}`;
+    newH2.textContent = `Carbon Footprint Total:${obj.totalObj}`;
     const newH3 = document.createElement("h3");
-    newH3.textContent = 'Based on number in and size of home'
+    newH3.textContent = `Based on amount of people and size of home ${obj.firNameObj} ${obj.lstNameObj}`
     const newP = document.createElement("p");
     newP.textContent = `This number is based on the number of people in the house of ${obj.houseM} (score: ${obj.houseMPTS}),`;
     newP.textContent += ` and a ${obj.houseS} size of home (score: ${obj.houseSPTS}).`;
