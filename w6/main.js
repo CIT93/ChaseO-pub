@@ -1,3 +1,5 @@
+const FORM = document.getElementById("form");
+const output = document.getElementById("output");
 const cfpData = [];
 
 function determineHouseSizePts(size) {
@@ -60,18 +62,8 @@ function start(houseHoldMembers, houseSize) {
   
 }
 
-// function displayOutput() {
-// for (arr of cfpData){
-//  console.log(arr)
-// const output = document.getElementById("output");
-//  const newP = document.createElement("p");
-//  newP.textContent = `Carbon Footprint total is ${arr[4]}, you get ${arr[2]} points, if your members are ${arr[0]}, so your living arrangements would be ${arr[1]}, then your points should be ${arr[3]}.`;
-//  output.appendChild(newP)
-// }
-// }
 
 function displayOutput() {
-  const output = document.getElementById("output");
   for (obj of cfpData) {
     const newH2 = document.createElement("h2");
     newH2.textContent = `Carbon Footprint ${obj.cfpTotal}`;
@@ -80,18 +72,25 @@ function displayOutput() {
     const newP = document.createElement("p");
     newP.textContent = `This number is based on the number of people in the house of ${obj.houseM} (score: ${obj.houseMPTS}),`;
     newP.textContent += ` and a ${obj.houseS} size of home (score: ${obj.houseSPTS}).`;
-    output.appendChild(newH2);
-    output.appendChild(newH3);
-    output.appendChild(newP);
+    OUTPUT.appendChild(newH2);
+    OUTPUT.appendChild(newH3);
+    OUTPUT.appendChild(newP);
   }
 }
-// no clue why line 66-68 isn't working. if I delete it everything works but If I retype it theres still an error. D:
-
-start(2, "apt");
-start(10, "large");
-start(2, "small");
-start(4, "medium");
-
-displayOutput()
 
 
+FORM.addEventListener('submit', function(e){
+    e.preventDefault();
+    const firstName = FORM.firstname.value;
+    const lastName = FORM.lastname.value;
+    const houseMembers = FORM.parseInt(housem.value);
+    const houseSize = FORM.houses.value;
+    start(houseMembers, houseSize);
+    OUTPUT.innerHTML = "";
+    displayOutput();
+    FORM.reset();
+})
+
+// No, because its not abbreviated as "apt" so it doesn't read it
+
+// Because if the user doesn't give correct on the point answer it will mess up, so this makes it practically easy to translate
