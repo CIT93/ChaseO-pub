@@ -1,6 +1,6 @@
 const FORM = document.getElementById("form");
-const output = document.getElementById("output");
 const cfpData = [];
+const OUTPUT = document.getElementById("output");
 
 function determineHouseSizePts(size) {
   let houseSizePoints = 0;
@@ -13,7 +13,6 @@ function determineHouseSizePts(size) {
   } else if (size === "apt") {
     houseSizePoints = 2;
   }
-
   return houseSizePoints;
 }
 
@@ -34,16 +33,7 @@ function determineHouseholdPts(numberInHousehold) {
   } else if (numberInHousehold > 7) {
     houseHoldPoints = 2;
   }
-
   return houseHoldPoints;
-}
-
-function displayOutObj(obj) {
-  console.log(obj);
-  const output = document.getElementById("output");
-  const newH2 = document.createElement("h2");
-  newH2.textContent = `Carbon Footprint ${obj.cfpTotal}`;
-  output.appendChild(newH2);
 }
 
 function start(houseHoldMembers, houseSize) {
@@ -58,20 +48,16 @@ function start(houseHoldMembers, houseSize) {
     houseS: houseSize,
     houseMPTS: houseHoldPTS,
     houseSPTS: houseSizePTS,
-    cfpTotal: total
+    cfpTotal: total,
   });
-
-
-  
 }
-
 
 function displayOutput() {
   for (obj of cfpData) {
     const newH2 = document.createElement("h2");
     newH2.textContent = `Carbon Footprint Total:${obj.totalObj}`;
     const newH3 = document.createElement("h3");
-    newH3.textContent = `Based on amount of people and size of home ${obj.firNameObj} ${obj.lstNameObj}`
+    newH3.textContent = `Based on amount of people and size of home ${obj.firNameObj} ${obj.lstNameObj}`;
     const newP = document.createElement("p");
     newP.textContent = `This number is based on the number of people in the house of ${obj.houseM} (score: ${obj.houseMPTS}),`;
     newP.textContent += ` and a ${obj.houseS} size of home (score: ${obj.houseSPTS}).`;
@@ -81,18 +67,17 @@ function displayOutput() {
   }
 }
 
-
-FORM.addEventListener('submit', function(e){
-    e.preventDefault();
-    const firstName = FORM.firstname.value;
-    const lastName = FORM.lastname.value;
-    const houseMembers = FORM.parseInt(housem.value);
-    const houseSize = FORM.houses.value;
-    start(houseMembers, houseSize);
-    OUTPUT.innerHTML = "";
-    displayOutput();
-    FORM.reset();
-})
+FORM.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const firstName = FORM.firstname.value;
+  const lastName = FORM.lastname.value;
+  const houseMembers = FORM.parseInt(housem.value);
+  const houseSize = FORM.houses.value;
+  start(houseMembers, houseSize);
+  OUTPUT.innerHTML = "";
+  displayOutput();
+  FORM.reset();
+});
 
 // No, because its not abbreviated as "apt" so it doesn't read it
 
