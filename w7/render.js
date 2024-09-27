@@ -12,30 +12,45 @@ function renderTblHeading () {
     });
     thead.appendChild(tr);
     table.appendChild(thead);
-    return table
+    return table;
   }
   
   function renderTbl(data){
    const table = renderTblHeading();
    const tbody = document.createElement("tbody");
-   const tr = document.createElement("tr");
-   const trTextArr = ["Chase", 3, "Large", 20, "Edit/Del"];
-   trTextArr.forEach(function(text){
-     const td = document.createElement("td");
-     td.textContent = text;
-     tr.appendChild(td);
-   })
+
+   data.forEach(item => {
+    const tr = document.createElement("tr")
+    const nameTable = document.createElement("td");
+    nameTable.textContent = item.firstName;
+    tr.appendChild(nameTable);
+    const householdTable = document.createElement("td");
+    householdTable.textContent = item.houseM;
+    tr.appendChild(householdTable);
+    const housesizeTable = document.createElement("td");
+    housesizeTable.textContent = item.houseS;
+    tr.appendChild(housesizeTable);
+    const footprintTable = document.createElement("td");
+    footprintTable.textContent = item.cfpTotal
+    tr.appendChild(footprintTable);
+
    const td = document.createElement("td");
    const btnEdit = document.createElement("button");
    const btnDel = document.createElement("button");
    btnEdit.textContent = "Edit";
    btnDel.textContent = "Del";
+
    td.appendChild(btnEdit);
    td.appendChild(btnDel);
    tr.appendChild(td);
    tbody.appendChild(tr);
+
+   });
+
+   
    table.appendChild(tbody);
    TBL.appendChild(table);
+
   }
 
 export {renderTbl, renderTblHeading};
