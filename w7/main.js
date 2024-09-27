@@ -1,8 +1,8 @@
 import { renderTbl } from "./render.js";
+import {determineHouseSizePts, determineHouseholdPts} from "./carbonfootprint.js";
 
 const FORM = document.getElementById("form");
 const OUTPUT = document.getElementById("output");
-
 const cfpData = [];
 
 function determineHouseSizePts(size) {
